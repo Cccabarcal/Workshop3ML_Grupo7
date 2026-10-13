@@ -1,10 +1,6 @@
 # Workshop 3 — Segmentación de clientes con Clustering
 
-# Integrantes
-Alexander Vargas
-Cristian Cabarcas López
-Jacobo Pava Quintero
-Samuel Herrera Galvis
+**Equipo:** Cristian Cabarcas, Samuel Herrera, Jacobo Pava y Alexander Vargas
 
 Segmentación de los 200 clientes del dataset **Mall Customer Segmentation Data** comparando tres métodos de clustering no supervisado (K-Means, Agglomerative y DBSCAN). Los segmentos resultantes se usan como variable objetivo para entrenar un clasificador que asigna el segmento a clientes nuevos.
 
@@ -14,9 +10,9 @@ Segmentación de los 200 clientes del dataset **Mall Customer Segmentation Data*
 
 | Archivo | Contenido |
 |---|---|
-| `Workshop3_Clustering.ipynb` | Notebook con el código, los resultados y las respuestas a todas las preguntas del workshop |
-| `Workshop3_Clustering.html` | El mismo notebook ya ejecutado, para leerlo en el navegador sin instalar nada |
-| `Mall_Customers.csv` | Dataset (200 clientes, 5 columnas) |
+| `Workshop3_Clustering_def.ipynb` | Notebook con el código, los resultados y las respuestas a todas las preguntas del workshop |
+| `Workshop3_Clustering_def.html` | El mismo notebook ya ejecutado, para leerlo en el navegador sin instalar nada |
+| `Mall_Customers.csv` | Dataset (200 clientes, 5 columnas); opcional, el notebook puede descargarlo de Kaggle |
 | `Workshop3.md` | Enunciado del workshop |
 
 ## Cómo ejecutarlo
@@ -24,11 +20,14 @@ Segmentación de los 200 clientes del dataset **Mall Customer Segmentation Data*
 1. Instalar las dependencias:
 
    ```bash
-   pip install pandas numpy matplotlib seaborn scipy scikit-learn jupyter
+   pip install pandas numpy matplotlib seaborn scipy scikit-learn kagglehub jupyter
    ```
 
-2. Poner `Mall_Customers.csv` en la misma carpeta que el notebook.
-3. Abrir `Workshop3_Clustering.ipynb` en Jupyter (o subir ambos archivos a Google Colab) y ejecutar todas las celdas en orden.
+   En Google Colab todas estas librerías ya vienen instaladas.
+
+2. Abrir `Workshop3_Clustering_def.ipynb` en Jupyter o en Google Colab y ejecutar todas las celdas en orden.
+
+**Carga de los datos:** no hace falta Google Drive. Si `Mall_Customers.csv` está en la misma carpeta que el notebook, se usa ese archivo; si no, el notebook lo descarga directamente de [Kaggle](https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python) con `kagglehub`. La primera celda de carga imprime de dónde se leyó el dataset.
 
 El notebook se ejecuta completo sin errores. Los resultados se verificaron con scikit-learn 1.5 a 1.9, y en todas esas versiones los clusters salen con la misma numeración. En la Fase 7 hay una celda que comprueba que cada número de cluster tenga el perfil descrito en los textos; si imprime una advertencia, hay que reasignar los números en las respuestas.
 
@@ -73,7 +72,7 @@ El notebook se ejecuta completo sin errores. Los resultados se verificaron con s
 
 - **k = 6 y no el mayor Silhouette (k = 8):** con k = 8 los clusters son 4 comportamientos repetidos en hombres y mujeres. El codo no es claro, así que la elección se apoya en el dendrograma, el Silhouette y la interpretabilidad de los perfiles.
 - **K-Means y no DBSCAN:** DBSCAN junta a todas las mujeres en un solo cluster y deja como ruido a clientes de gasto bajo e ingreso medio-alto, un segmento importante para el negocio.
-- **Agglomerative como alternativa:** da segmentos muy parecidos (índice de Rand ajustado 0.65), con la diferencia de que su grupo premium es mixto en género.
+- **Agglomerative como alternativa:** da segmentos bastante parecidos (índice de Rand ajustado 0.65, coincidencia moderada a alta), con la diferencia de que su grupo premium es mixto en género.
 
 ## Limitaciones
 
